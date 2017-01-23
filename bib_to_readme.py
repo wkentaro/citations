@@ -27,7 +27,7 @@ this_dir = osp.dirname(osp.realpath(__file__))
 
 def main():
     bib_file = osp.join(this_dir, 'citations.bib')
-    with open(bib_file, 'r') as f:
+    with open(bib_file) as f:
         bib = bibtexparser.loads(f.read())
 
     readme_file = osp.join(this_dir, 'README.md')
