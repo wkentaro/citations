@@ -52,7 +52,7 @@ def abbreviate_booktitle(booktitle):
 def abbreviate_author(author):
     authors = author.split(' and ')
     if len(authors) > 1:
-        abbreviated = authors[0] + 'et al.'
+        abbreviated = authors[0] + ' et al.'
     else:
         abbreviated = authors[0]
     return abbreviated
