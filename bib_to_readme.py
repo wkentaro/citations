@@ -11,6 +11,8 @@ def abbreviate_booktitle(booktitle, year):
         return 'CVPR' + year
     elif 'International Conference on Robotics and Automation' in booktitle:
         return 'ICRA' + year
+    elif 'ICRA' in booktitle:
+        return 'ICRA' + year
     elif 'International Conference on Humanoid Robots' in booktitle:
         return 'Humanoids' + year
     elif 'Intelligent Robots and Systems' in booktitle:
@@ -31,6 +33,8 @@ def abbreviate_booktitle(booktitle, year):
         return 'ICMA' + year
     elif 'International Journal of Computer Vision' in booktitle:
         return 'IJCV' + year
+    elif 'ECCV' in booktitle:
+        return 'ECCV' + year
     elif 'International Journal of Robotics Research' in booktitle:
         return 'IJRR' + year
     elif 'Neural Information Processing Systems' in booktitle:
