@@ -35,6 +35,8 @@ def abbreviate_booktitle(booktitle, year):
         return 'IJCV' + year
     elif 'ECCV' in booktitle:
         return 'ECCV' + year
+    elif 'International Conference on Computer Vision' in booktitle:
+        return 'ICCV' + year
     elif 'International Journal of Robotics Research' in booktitle:
         return 'IJRR' + year
     elif 'Neural Information Processing Systems' in booktitle:
