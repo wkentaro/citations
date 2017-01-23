@@ -40,6 +40,8 @@ def abbreviate_booktitle(booktitle, year):
     elif 'arXiv' in booktitle:
         return 'arXiv' + year
     else:
+        if year not in booktitle:
+            booktitle = booktitle + ' ' + year
         return booktitle
 
 
