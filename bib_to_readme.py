@@ -6,48 +6,46 @@ import bibtexparser
 import tabulate
 
 
-def abbreviate_booktitle(booktitle, year):
+def abbreviate_booktitle(booktitle):
     if 'Computer Vision and Pattern Recognition' in booktitle:
-        return 'CVPR' + year
+        return 'CVPR'
     elif 'International Conference on Robotics and Automation' in booktitle:
-        return 'ICRA' + year
+        return 'ICRA'
     elif 'ICRA' in booktitle:
-        return 'ICRA' + year
+        return 'ICRA'
     elif 'International Conference on Humanoid Robots' in booktitle:
-        return 'Humanoids' + year
+        return 'Humanoids'
     elif 'Intelligent Robots and Systems' in booktitle:
-        return 'IROS' + year
+        return 'IROS'
     elif 'International Conference on Machine Learning' in booktitle:
-        return 'ICML' + year
+        return 'ICML'
     elif 'International Conference on Learning Representations' in booktitle:
-        return 'ICLR' + year
+        return 'ICLR'
     elif 'International Symposium on Experimental Robotics' in booktitle:
-        return 'ISER' + year
+        return 'ISER'
     elif 'ISRR' in booktitle:
-        return 'ISRR' + year
+        return 'ISRR'
     elif 'Proceedings of Robotics: Science and Systems' in booktitle:
-        return 'RSS' + year
+        return 'RSS'
     elif 'International Conference on Technologies for Practical Robot Applications' in booktitle:  # NOQA
-        return 'TePRA' + year
+        return 'TePRA'
     elif 'International Conference on Mechatronics and Automation' in booktitle:
-        return 'ICMA' + year
+        return 'ICMA'
     elif 'International Journal of Computer Vision' in booktitle:
-        return 'IJCV' + year
+        return 'IJCV'
     elif 'ECCV' in booktitle:
-        return 'ECCV' + year
+        return 'ECCV'
     elif 'International Conference on Computer Vision' in booktitle:
-        return 'ICCV' + year
+        return 'ICCV'
     elif 'International Journal of Robotics Research' in booktitle:
-        return 'IJRR' + year
+        return 'IJRR'
     elif 'Neural Information Processing Systems' in booktitle:
-        return 'NIPS' + year
+        return 'NIPS'
     elif 'DAAAM' in booktitle:
-        return 'DAAAM' + year
+        return 'DAAAM'
     elif 'arXiv' in booktitle:
-        return 'arXiv' + year
+        return 'arXiv'
     else:
-        if year not in booktitle:
-            booktitle = booktitle + ' ' + year
         return booktitle
 
 
@@ -74,17 +72,19 @@ def main():
         f.write('\n')
 
         citations = []
-        headers = ['tex', 'title', 'author', 'book']
-        for entry in sorted(bib.entries,
-                            key=lambda x: int(x['year']), reverse=True):
+        headers = ['tex', 'title', 'author', 'book', 'year']
+
+        for entry in bib.entries:
             tex = '`\cite{%s}`' % entry['ID']
             linked_title = '[%s](%s)' % (entry['title'], entry['pdf'])
             author = abbreviate_author(entry['author'])
             booktitle = entry.get('booktitle') or entry['journal']
-            book = abbreviate_booktitle(booktitle, entry['year'])
-            citations.append((tex, linked_title, author, book))
+            book = abbreviate_booktitle(booktitle)
+            year = int(entry['year'])
+            citations.append((tex, linked_title, author, book, year))
+        citations = sorted(citations, key=lambda x: (x[4], x[3]), reverse=True)
         md_table = tabulate.tabulate(citations, headers=headers,
-                                    tablefmt='pipe', stralign='center')
+                                     tablefmt='pipe', stralign='center')
         f.write(md_table + '\n')
 
 
