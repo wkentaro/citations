@@ -64,7 +64,7 @@ def main():
 
     readme_file = osp.join(this_dir, 'README.md')
     with open(readme_file, 'w') as f:
-        f.write('# citations\n')
+        f.write('# citations (%d)\n' % len(bib.entries))
         f.write('\n')
 
         citations = []
