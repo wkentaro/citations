@@ -52,7 +52,7 @@ def abbreviate_booktitle(booktitle, year):
 
 
 def abbreviate_author(author):
-    authors = author.split('and')
+    authors = author.split(' and ')
     if len(authors) > 1:
         abbreviated = authors[0] + 'et al.'
     else:
