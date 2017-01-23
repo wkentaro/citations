@@ -75,7 +75,7 @@ def main():
         headers = ['tex', 'title', 'author', 'book']
         for entry in bib.entries:
             tex = '`\cite{%s}`' % entry['ID']
-            linked_title = '[%s](%s)' % (entry['title'], entry['link'])
+            linked_title = '[%s](%s)' % (entry['title'], entry['pdf'])
             author = abbreviate_author(entry['author'])
             booktitle = entry.get('booktitle') or entry['journal']
             book = abbreviate_booktitle(booktitle, entry['year'])

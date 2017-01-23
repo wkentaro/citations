@@ -13,7 +13,7 @@ def main():
     with open(bib_file) as f:
         bib = bibtexparser.loads(f.read())
 
-    required_fields = ['title', 'author', ['booktitle', 'journal'], 'link']
+    required_fields = ['title', 'author', ['booktitle', 'journal'], 'pdf']
     for entry in bib.entries:
         cite_id = entry['ID']
         missing = []
