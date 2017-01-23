@@ -27,7 +27,7 @@ def abbreviate_booktitle(booktitle, year):
         return 'ISRR' + year
     elif 'Proceedings of Robotics: Science and Systems' in booktitle:
         return 'RSS' + year
-    elif 'International Conference on Technologies for Practical Robot Applications' in booktitle:
+    elif 'International Conference on Technologies for Practical Robot Applications' in booktitle:  # NOQA
         return 'TePRA' + year
     elif 'International Conference on Mechatronics and Automation' in booktitle:
         return 'ICMA' + year
@@ -75,7 +75,8 @@ def main():
 
         citations = []
         headers = ['tex', 'title', 'author', 'book']
-        for entry in bib.entries:
+        for entry in sorted(bib.entries,
+                            key=lambda x: int(x['year']), reverse=True):
             tex = '`\cite{%s}`' % entry['ID']
             linked_title = '[%s](%s)' % (entry['title'], entry['pdf'])
             author = abbreviate_author(entry['author'])
